@@ -13,7 +13,7 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/users",
+        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/users",
          {
            method: "GET" 
          }
@@ -35,7 +35,7 @@ function App() {
   const handleSubmit = async(name: string, age: number) => {
     try {
       const response = await fetch(
-        "http://localhost:8000/user",
+        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/user",
         {
           method: "POST",
           headers: {
