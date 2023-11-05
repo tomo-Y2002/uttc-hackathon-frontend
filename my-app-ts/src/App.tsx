@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Form from "./Form"
+import {LoginForm} from "./LoginForm"
 
 type UserData = {
   name: string;
@@ -63,6 +64,7 @@ function App() {
         <h1>User Register</h1>
       </header>
       <Form onSubmit={handleSubmit}/>
+      <LoginForm/>
       <div className="user-list">
         {users.map((user, index) => (
           <div key={index} className="user-item">{user.name}, {user.age}</div>
