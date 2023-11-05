@@ -2,6 +2,8 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Form from "./Form"
 import {LoginForm} from "./LoginForm"
+import { onAuthStateChanged } from "firebase/auth";
+import { fireAuth } from "./firebase";
 
 type UserData = {
   name: string;
@@ -10,6 +12,10 @@ type UserData = {
 
 function App() {
   const [users, setUsers] = useState<UserData[]>([]);
+  const [loginUser, setLoginUser] = useState(fireAuth.currentUser);
+  onAuthStateChanged(fireAuth, user => {
+    setLoginUser(user);
+  });
 
   const fetchData = async () => {
     try {
@@ -63,13 +69,13 @@ function App() {
       <header className="App-header">
         <h1>User Register</h1>
       </header>
-      <Form onSubmit={handleSubmit}/>
       <LoginForm/>
-      <div className="user-list">
+      {/* <div className="user-list">
         {users.map((user, index) => (
           <div key={index} className="user-item">{user.name}, {user.age}</div>
         ))}
-      </div>
+      </div> */}
+      {loginUser ?  <Form onSubmit={handleSubmit}/>: null}
     </div>
   );
 }
