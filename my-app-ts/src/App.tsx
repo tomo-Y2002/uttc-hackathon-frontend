@@ -2,15 +2,16 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Form from "./Form"
 // import { onAuthStateChanged } from "firebase/auth";
-// import { fireAuth } from "./firebase";
-import { LoginForm } from "./LoginForm";
+import { initializeFirebaseApp } from "./firebase";
 import Signup from "./pages/signup";
+import Signin from "./pages/signin";
 
 type UserData = {
   name: string;
   age: string;
 }
 
+initializeFirebaseApp();
 function App() {
   const [users, setUsers] = useState<UserData[]>([]);
   // const [loginUser, setLoginUser] = useState(fireAuth.currentUser);
@@ -72,6 +73,7 @@ function App() {
       </header>
       {/* <LoginForm /> */}
       <Signup />
+      <Signin />
       <Form onSubmit={handleSubmit}/>
       <div className="user-list">
         {users.map((user, index) => (
