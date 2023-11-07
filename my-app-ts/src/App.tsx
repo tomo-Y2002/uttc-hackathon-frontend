@@ -4,6 +4,7 @@ import Form from "./Form"
 // import { onAuthStateChanged } from "firebase/auth";
 // import { fireAuth } from "./firebase";
 import { LoginForm } from "./LoginForm";
+import Signup from "./pages/signup";
 
 type UserData = {
   name: string;
@@ -69,7 +70,8 @@ function App() {
       <header className="App-header">
         <h1>User Register</h1>
       </header>
-      <LoginForm />
+      {/* <LoginForm /> */}
+      <Signup />
       <Form onSubmit={handleSubmit}/>
       <div className="user-list">
         {users.map((user, index) => (
