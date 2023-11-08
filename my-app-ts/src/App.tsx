@@ -17,7 +17,7 @@ type UserData = {
 initializeFirebaseApp();
 function App() {
   const [users, setUsers] = useState<UserData[]>([]);
-  const endpoint = process.env.REACT_ENDPOINT || "http://localhost:8080";
+  const endpoint = process.env.REACT_APP_ENDPOINT || "http://localhost:8080";
 
   const fetchData = async () => {
     try {
