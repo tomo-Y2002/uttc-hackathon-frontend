@@ -1,0 +1,48 @@
+/* style.css */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form {
+  margin-top: 1rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.submit-group {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-group button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+}
+
+.submit-group button:disabled {
+  background-color: #cccccc;
+}

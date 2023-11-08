@@ -1,0 +1,16 @@
+/* style.css */
+.header {
+  padding: 16px 0;
+  background-color: #3182ce; 
+}
+
+.container {
+  max-width: 960px; 
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.heading {
+  color: white;
+  text-align: center;
+}

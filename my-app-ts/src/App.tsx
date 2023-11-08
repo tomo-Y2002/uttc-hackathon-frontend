@@ -1,19 +1,30 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Form from "./Form"
+// import { onAuthStateChanged } from "firebase/auth";
+import { initializeFirebaseApp } from "./firebase";
+import Signup from "./pages/signup";
+import Signin from "./pages/signin";
+import { AuthProvider } from "./feature/auth/provider/AuthProvider";
+import {Header} from "./component/Header"
 
 type UserData = {
   name: string;
   age: string;
 }
 
+initializeFirebaseApp();
 function App() {
   const [users, setUsers] = useState<UserData[]>([]);
+  // const [loginUser, setLoginUser] = useState(fireAuth.currentUser);
+  // onAuthStateChanged(fireAuth, user => {
+  //   setLoginUser(user);
+  // });
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/users",
+        "http://localhost:8080/users",
          {
            method: "GET" 
          }
@@ -35,7 +46,7 @@ function App() {
   const handleSubmit = async(name: string, age: number) => {
     try {
       const response = await fetch(
-        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/user",
+        "http://localhost:8080/user",
         {
           method: "POST",
           headers: {
@@ -62,6 +73,11 @@ function App() {
       <header className="App-header">
         <h1>User Register</h1>
       </header>
+      <AuthProvider>
+        <Header />
+      </AuthProvider>
+      <Signup />
+      <Signin />
       <Form onSubmit={handleSubmit}/>
       <div className="user-list">
         {users.map((user, index) => (
