@@ -7,6 +7,7 @@ import Signin from "./pages/signin";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
 import {Header} from "./component/Header";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./component/auth/ProtectedRoute";
 
 type UserData = {
   name: string;
@@ -75,25 +76,31 @@ function App() {
       </header>
       <AuthProvider>
         <Header />
+        <BrowserRouter>
+          <Link to="/">Home</Link>
+          <br />
+          <Link to="/signup">SignUp</Link>
+          <br />
+          <Link to="/signin">SignIn</Link>
+          <br />
+          <Routes>
+            <Route path="/" element={
+              <ProtectedRoute>
+                <div>
+                  <Form onSubmit={handleSubmit}/>
+                  <div className="user-list">
+                    {users.map((user, index) => (
+                      <div key={index} className="user-item">{user.name}, {user.age}</div>
+                    ))}
+                  </div>
+                </div>
+              </ProtectedRoute>
+            } />
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/signin" element={<Signin/>}/>
+          </Routes>
+        </BrowserRouter>
       </AuthProvider>
-      <BrowserRouter>
-        <Link to="/signup">SignUp</Link>
-        <br />
-        <Link to="/signin">SignIn</Link>
-        <br />
-        <Routes>
-          <Route path="/signup" element={<Signup/>}/>
-          <Route path="/signin" element={<Signin/>}/>
-        </Routes>
-      </BrowserRouter>
-      {/* <Signup />
-      <Signin /> */}
-      <Form onSubmit={handleSubmit}/>
-      <div className="user-list">
-        {users.map((user, index) => (
-          <div key={index} className="user-item">{user.name}, {user.age}</div>
-        ))}
-      </div>
     </div>
   );
 }
