@@ -1,12 +1,12 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Form from "./Form"
-// import { onAuthStateChanged } from "firebase/auth";
+import Form from "./Form";
 import { initializeFirebaseApp } from "./firebase";
 import Signup from "./pages/signup";
 import Signin from "./pages/signin";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
-import {Header} from "./component/Header"
+import {Header} from "./component/Header";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 type UserData = {
   name: string;
@@ -24,7 +24,7 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/users",
+        "http://localhost:8080/users",
          {
            method: "GET" 
          }
@@ -46,7 +46,7 @@ function App() {
   const handleSubmit = async(name: string, age: number) => {
     try {
       const response = await fetch(
-        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/user",
+        "http://localhost:8080/user",
         {
           method: "POST",
           headers: {
@@ -76,8 +76,18 @@ function App() {
       <AuthProvider>
         <Header />
       </AuthProvider>
-      <Signup />
-      <Signin />
+      <BrowserRouter>
+        <Link to="/signup">SignUp</Link>
+        <br />
+        <Link to="/signin">SignIn</Link>
+        <br />
+        <Routes>
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/signin" element={<Signin/>}/>
+        </Routes>
+      </BrowserRouter>
+      {/* <Signup />
+      <Signin /> */}
       <Form onSubmit={handleSubmit}/>
       <div className="user-list">
         {users.map((user, index) => (
