@@ -17,15 +17,12 @@ type UserData = {
 initializeFirebaseApp();
 function App() {
   const [users, setUsers] = useState<UserData[]>([]);
-  // const [loginUser, setLoginUser] = useState(fireAuth.currentUser);
-  // onAuthStateChanged(fireAuth, user => {
-  //   setLoginUser(user);
-  // });
+  const endpoint = process.env.REACT_ENDPOINT || "http://localhost:8080";
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/users",
+        endpoint+"/users",
          {
            method: "GET" 
          }
@@ -47,7 +44,7 @@ function App() {
   const handleSubmit = async(name: string, age: number) => {
     try {
       const response = await fetch(
-        "http://localhost:8080/user",
+        endpoint + "/user",
         {
           method: "POST",
           headers: {
