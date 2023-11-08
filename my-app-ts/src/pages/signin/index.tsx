@@ -28,7 +28,7 @@ export const Signin = () => {
 
   return (
     <div className="container">
-      <h1 className="heading">サインイン</h1>
+      <h1 >サインイン</h1>
       <form onSubmit={handleSubmit} className="form">
         <div className="input-group">
           <label className="form-label">メールアドレス</label>

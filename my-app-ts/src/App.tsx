@@ -5,6 +5,8 @@ import Form from "./Form"
 import { initializeFirebaseApp } from "./firebase";
 import Signup from "./pages/signup";
 import Signin from "./pages/signin";
+import { AuthProvider } from "./feature/auth/provider/AuthProvider";
+import {Header} from "./component/Header"
 
 type UserData = {
   name: string;
@@ -71,7 +73,9 @@ function App() {
       <header className="App-header">
         <h1>User Register</h1>
       </header>
-      {/* <LoginForm /> */}
+      <AuthProvider>
+        <Header />
+      </AuthProvider>
       <Signup />
       <Signin />
       <Form onSubmit={handleSubmit}/>
