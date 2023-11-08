@@ -1,11 +1,13 @@
 import { FormEvent, useState } from "react";
 import "./style.css"; 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
@@ -17,7 +19,7 @@ export const Signin = () => {
       alert('ログインしました。'); 
       setEmail('');
       setPassword('');
-      // TODO: ログイン後のページに遷移の処理を書く
+      navigate('/');
     } catch (e) {
       alert('エラーが発生しました。'); 
       console.error(e);

@@ -1,12 +1,13 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Form from "./Form"
-// import { onAuthStateChanged } from "firebase/auth";
+import Form from "./Form";
 import { initializeFirebaseApp } from "./firebase";
 import Signup from "./pages/signup";
 import Signin from "./pages/signin";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
-import {Header} from "./component/Header"
+import {Header} from "./component/Header";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./component/auth/ProtectedRoute";
 
 type UserData = {
   name: string;
@@ -16,15 +17,12 @@ type UserData = {
 initializeFirebaseApp();
 function App() {
   const [users, setUsers] = useState<UserData[]>([]);
-  // const [loginUser, setLoginUser] = useState(fireAuth.currentUser);
-  // onAuthStateChanged(fireAuth, user => {
-  //   setLoginUser(user);
-  // });
+  const endpoint = process.env.REACT_ENDPOINT || "http://localhost:8080";
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/users",
+        endpoint+"/users",
          {
            method: "GET" 
          }
@@ -46,7 +44,7 @@ function App() {
   const handleSubmit = async(name: string, age: number) => {
     try {
       const response = await fetch(
-        "https://uttc-hackathon-backend-hrvcz32glq-uc.a.run.app/user",
+        endpoint + "/user",
         {
           method: "POST",
           headers: {
@@ -75,15 +73,31 @@ function App() {
       </header>
       <AuthProvider>
         <Header />
+        <BrowserRouter>
+          <Link to="/">Home</Link>
+          <br />
+          <Link to="/signup">SignUp</Link>
+          <br />
+          <Link to="/signin">SignIn</Link>
+          <br />
+          <Routes>
+            <Route path="/" element={
+              <ProtectedRoute>
+                <div>
+                  <Form onSubmit={handleSubmit}/>
+                  <div className="user-list">
+                    {users.map((user, index) => (
+                      <div key={index} className="user-item">{user.name}, {user.age}</div>
+                    ))}
+                  </div>
+                </div>
+              </ProtectedRoute>
+            } />
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/signin" element={<Signin/>}/>
+          </Routes>
+        </BrowserRouter>
       </AuthProvider>
-      <Signup />
-      <Signin />
-      <Form onSubmit={handleSubmit}/>
-      <div className="user-list">
-        {users.map((user, index) => (
-          <div key={index} className="user-item">{user.name}, {user.age}</div>
-        ))}
-      </div>
     </div>
   );
 }
