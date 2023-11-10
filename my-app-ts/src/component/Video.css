@@ -1,0 +1,63 @@
+/* Video.css */
+.video-container {
+  font-family: 'Arial', sans-serif;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-title {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.video-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px; /* Adjust width as needed */
+  position: relative; /* For positioning the play icon or overlay */
+}
+
+.video-item-title {
+  color: #2a9d8f;
+  margin-bottom: 15px;
+}
+
+.video-iframe {
+  width: 100%; /* Responsive width */
+  height: 315px; /* Fixed height, you can make it responsive with padding-top trick */
+  border: none; /* Remove the border */
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    padding: 10px;
+  }
+
+  .video-iframe {
+    height: 200px; /* Adjust height for smaller devices */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .video-container {
+    padding: 15px;
+  }
+
+  .video-iframe {
+    height: 250px; /* Adjust height for medium devices */
+  }
+}
+
+@media (min-width: 1025px) {
+  .video-container {
+    max-width: 800px; /* Adjust max-width for larger devices */
+  }
+}

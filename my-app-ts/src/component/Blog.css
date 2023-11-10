@@ -1,0 +1,65 @@
+/* Blog.css */
+.blog-container {
+  font-family: 'Arial', sans-serif;
+  margin: auto;
+  padding: 20px;
+}
+
+.blog-title {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.blog-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out; /* アニメーション効果 */
+}
+
+.blog-item:hover {
+  transform: translateY(-5px); /* ホバー時の動き */
+}
+
+.item-title {
+  color: #2a9d8f;
+  margin-bottom: 10px;
+}
+
+.item-content {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 小さな画面（モバイル）のスタイル */
+@media (max-width: 768px) {
+  .blog-container {
+    padding: 10px;
+  }
+
+  .blog-item {
+    padding: 15px;
+  }
+}
+
+/* 中くらいの画面（タブレット）のスタイル */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .blog-container {
+    padding: 15px;
+  }
+
+  .blog-item {
+    padding: 20px;
+  }
+}
+
+/* 大きな画面（デスクトップ）のスタイル */
+@media (min-width: 1025px) {
+  .blog-container {
+    max-width: 1200px; /* コンテナの最大幅 */
+  }
+}
