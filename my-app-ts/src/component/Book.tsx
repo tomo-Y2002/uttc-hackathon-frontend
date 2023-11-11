@@ -34,8 +34,8 @@ export const Book: React.FC<BookProps> = ({ items, handleUpdateItem, handleDelet
         editingItem.categoryId,
         editingItem.chapterId,
         editingItem.title,
+        editingItem.description,
         editingItem.content,
-        editingItem.description
       );
       setEditMode(false);
       setEditingItem(null);
