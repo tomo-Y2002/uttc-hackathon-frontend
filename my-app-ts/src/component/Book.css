@@ -131,9 +131,9 @@
 }
 
 .book-header {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   margin-bottom: 20px;
 }
 
@@ -159,4 +159,15 @@
 
 .book-controls button:hover {
   background-color: #0056b3;
+}
+
+.book-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-created-at {
+  margin-left: auto; /* 右端に寄せる */
+  font-style: italic;
 }

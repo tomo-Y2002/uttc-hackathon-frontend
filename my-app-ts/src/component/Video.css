@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%
 }
 
 .video-title {
@@ -13,15 +14,26 @@
   margin-bottom: 30px;
 }
 
+.video-item-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* あるいはflex-start、centerなどに調整 */
+  gap: 20px; 
+  padding: 20px; 
+  width: 100%
+}
+
 .video-item {
+  flex: 1; /* フレックスアイテムに等しい空間を与える */
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  width: 100%;
-  max-width: 600px; /* Adjust width as needed */
+  max-width: calc(33% - 10px);
+  margin: 10px;
+  width: 20%;
   position: relative; /* For positioning the play icon or overlay */
 }
 
@@ -42,6 +54,7 @@
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 20px;
+  width: 30%
 }
 
 .edit-form {
@@ -127,14 +140,16 @@
 }
 
 .video-header {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   margin-bottom: 20px;
+  width: 80%
 }
 
 .video-controls {
   display: flex;
+  justify-content: flex-end;
 }
 
 .video-controls select {
@@ -153,8 +168,20 @@
   cursor: pointer;
 }
 
-.blog-controls button:hover {
+.video-controls button:hover {
   background-color: #0056b3;
+}
+
+.video-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+}
+
+.item-created-at {
+  margin-left: auto; /* 右端に寄せる */
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
@@ -177,8 +204,4 @@
   }
 }
 
-@media (min-width: 1025px) {
-  .video-container {
-    max-width: 800px; /* Adjust max-width for larger devices */
-  }
-}
+

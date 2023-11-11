@@ -121,7 +121,10 @@ export const Book: React.FC<BookProps> = ({ items, handleUpdateItem, handleDelet
       ) : (
         filteredAndSortedItems.map((item, index) => (
           <div key={index} className="book-item">
-            <h3 className="item-title">{item.title}</h3>
+            <div className="book-item-header">
+              <h3 className="item-title">{item.title}</h3>
+              <span className="item-created-at">{new Date(item.createdAt).toLocaleDateString()}</span>
+            </div>
             <a href={item.content} className="item-link" target="_blank" rel="noopener noreferrer">
               {item.content}
             </a>

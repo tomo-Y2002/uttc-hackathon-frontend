@@ -4,12 +4,17 @@ import { initializeFirebaseApp } from "./firebase";
 import Signup from "./pages/signup";
 import Signin from "./pages/signin";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
-import {Header} from "./component/Header";
+// import {Header} from "./component/Header";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./component/auth/ProtectedRoute";
 import { ItemForm } from "./component/Form/ItemForm";
 import { ItemData } from "./types";
-import { Home } from "./pages/Home/Home";
+// import { Home } from "./pages/Home/Home";
+import { Blog } from './component/Blog'; 
+import { Book } from './component/Book'; 
+import { Video } from './component/Video';
+import { Navbar } from "./component/Navbar";
+import { Header } from  "./component/Header/Header"
 
 initializeFirebaseApp();
 function App() {
@@ -124,31 +129,41 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>User Register</h1>
+      {/* <header className="App-header">
+        <h1>Knowledge Base</h1>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></link>
-      </header>
+      </header> */}
       <AuthProvider>
-        <Header />
         <BrowserRouter>
-          <Link to="/">Home</Link>
-          <br />
-          <Link to="/signup">SignUp</Link>
-          <br />
-          <Link to="/signin">SignIn</Link>
-          <br />
+          <Header />
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>
                 <div>
-                  <div>以下アイテムリスト</div>
+                  <h2>登録フォーム</h2>
                   <ItemForm onSubmit={handleSubmitItem}/>
-                  <Home items={items} onUpdate={handleUpdateItem} onDelete={handleDeleteItem}/>
+                  {/* <Home items={items} onUpdate={handleUpdateItem} onDelete={handleDeleteItem}/> */}
                 </div>
+              </ProtectedRoute>
+            } />
+            <Route path="/blog" element={
+              <ProtectedRoute>
+                <Blog items={items.filter(item => item.categoryId === 1)} handleUpdateItem={handleUpdateItem} handleDeleteItem={handleDeleteItem} />
+              </ProtectedRoute>
+            } />
+            <Route path="/book" element={
+              <ProtectedRoute>
+                <Book items={items.filter(item => item.categoryId === 2)} handleUpdateItem={handleUpdateItem} handleDeleteItem={handleDeleteItem} />
+              </ProtectedRoute>
+            } />
+            <Route path="/video" element={
+              <ProtectedRoute>
+                <Video items={items.filter(item => item.categoryId === 3)} handleUpdateItem={handleUpdateItem} handleDeleteItem={handleDeleteItem} />
               </ProtectedRoute>
             } />
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/signin" element={<Signin/>}/>
+            <Route path="/*" element={<div>No content</div>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
