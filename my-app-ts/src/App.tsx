@@ -139,8 +139,8 @@ function App() {
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>
-                <div>
-                  <h2>登録フォーム</h2>
+                <div className="item-container">
+                  <h2>アイテム追加</h2>
                   <ItemForm onSubmit={handleSubmitItem}/>
                   {/* <Home items={items} onUpdate={handleUpdateItem} onDelete={handleDeleteItem}/> */}
                 </div>

@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 20px; */
+  justify-content: flex-start;
 }
 
 .App-header {
@@ -32,4 +32,15 @@
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-container {
+  font-family: 'Arial', sans-serif;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  width: 80%;
 }
