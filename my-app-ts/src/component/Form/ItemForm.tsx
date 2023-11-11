@@ -53,11 +53,12 @@ export const ItemForm = (props: FormProps) => {
 
   return (
     <form id="user-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-gruoup">
+      <div className="form-group">
         <div className="input-section">
-          <label htmlFor="category-id">CategoryID: </label>
+          <label htmlFor="category-id">カテゴリ</label>
           <select 
             id="category-id"
+            className="input-id"
             {...register("categoryId", {
               required: {
                 value: true,
@@ -66,9 +67,9 @@ export const ItemForm = (props: FormProps) => {
               valueAsNumber: true,
             })}
           >
-            {["技術ブログ", 
+            {["ブログ", 
                   "技術書", 
-                  "技術系動画"
+                  "動画"
                   ].map((item, index) => (
               <option key={index} value={index+1}>{item}</option>
             ))}
@@ -76,9 +77,10 @@ export const ItemForm = (props: FormProps) => {
           {errors.categoryId && <div className="error">{errors.categoryId.message}</div>}
         </div>
         <div className="input-section">
-          <label htmlFor="chapter-id">ChapterID: </label>
+          <label htmlFor="chapter-id">カリキュラム</label>
           <select 
             id="chapter-id"
+            className="input-id"
             {...register("chapterId", {
               required: {
                 value: true,
@@ -110,7 +112,7 @@ export const ItemForm = (props: FormProps) => {
           {errors.chapterId && <div className="error">{errors.chapterId.message}</div>}
         </div>
         <div className="input-section">
-          <label htmlFor="title">Title: </label>
+          <label htmlFor="title">タイトル </label>
           <input
             id="title"
             type={"text"}
@@ -124,7 +126,7 @@ export const ItemForm = (props: FormProps) => {
           {errors.title && <div className="error">{errors.title.message}</div>}
         </div>
         <div className="input-section">
-          <label htmlFor="description">Description: </label>
+          <label htmlFor="description">説明</label>
           <input
             id="description"
             type={"text"}
@@ -138,7 +140,7 @@ export const ItemForm = (props: FormProps) => {
           {errors.description && <div className="error">{errors.description.message}</div>}
         </div>
         <div className="input-section">
-          <label htmlFor="content">Content: </label>
+          <label htmlFor="content">内容</label>
           <input
             id="content"
             type={"text"}
