@@ -122,7 +122,10 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
       ) : (
         filteredAndSortedItems.map((item, index) => (
           <div key={index} className="blog-item">
-            <h3 className="item-title" >{item.title}</h3>
+            <div className="blog-item-header">
+              <h3 className="item-title">{item.title}</h3>
+              <span className="item-created-at">{new Date(item.createdAt).toLocaleDateString()}</span>
+            </div>
             <p className="item-content">{item.content}</p>
             <div className="item-actions">
               <button className="edit-button" onClick={() => startEdit(item)}>

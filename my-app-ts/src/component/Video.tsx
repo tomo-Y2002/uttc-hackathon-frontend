@@ -130,24 +130,29 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
           </div>
         </div>
       ) : (
-        filteredAndSortedItems.map((item, index) => {
-          const videoId = extractYouTubeID(item.content || "");
-          const videoSrc = videoId ? `https://www.youtube.com/embed/${videoId}` : "";
-          return (
-            <div key={index} className="video-item">
-              <h3 className="video-item-title">{item.title}</h3>
-              {videoSrc && <iframe className="video-iframe" src={videoSrc} frameBorder="0" allowFullScreen></iframe>}
-              <div className="item-actions">
-                <button className="edit-button" onClick={() => startEdit(item)}>
-                  <i className="fas fa-edit"></i> 編集
-                </button>
-                <button className="delete-button" onClick={() => confirmAndDelete(item.itemId)}>
-                  <i className="fas fa-trash"></i> 削除
-                </button>
-              </div>
-            </div>
-          );
-        })
+        <div className="video-item-wrapper">
+          {filteredAndSortedItems.map((item, index) => {
+            const videoId = extractYouTubeID(item.content || "");
+            const videoSrc = videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+            return (
+                <div key={index} className="video-item">
+                  <div className="video-item-header">
+                    <h3 className="item-title">{item.title}</h3>
+                    <span className="item-created-at">{new Date(item.createdAt).toLocaleDateString()}</span>
+                  </div>
+                  {videoSrc && <iframe className="video-iframe" src={videoSrc} frameBorder="0" allowFullScreen></iframe>}
+                  <div className="item-actions">
+                    <button className="edit-button" onClick={() => startEdit(item)}>
+                      <i className="fas fa-edit"></i> 編集
+                    </button>
+                    <button className="delete-button" onClick={() => confirmAndDelete(item.itemId)}>
+                      <i className="fas fa-trash"></i> 削除
+                    </button>
+                  </div>
+                </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );
