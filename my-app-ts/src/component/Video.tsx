@@ -45,8 +45,8 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
         editingItem.categoryId,
         editingItem.chapterId,
         editingItem.title,
-        editingItem.content,
-        editingItem.description
+        editingItem.description,
+        editingItem.content
       );
       setEditMode(false);
       setEditingItem(null);
