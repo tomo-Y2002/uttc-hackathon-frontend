@@ -35,6 +35,125 @@
   line-height: 1.6;
 }
 
+.edit-button {
+  background-color: #4CAF50; /* 緑色の背景 */
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* スムーズな遷移効果 */
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-button i {
+  margin-right: 5px;
+}
+
+.edit-button:hover {
+  background-color: #45a049; /* ホバー時の背景色の変更 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* ホバー時のシャドウ */
+  transform: translateY(-2px); /* ホバー時の少しの浮き上がり効果 */
+}
+
+.blog-edit {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form label {
+  margin: 10px 0 5px;
+}
+
+.edit-form input[type="text"],
+.edit-form textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-form .apply-button {
+  background-color: #ff6347;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.edit-form .apply-button:hover {
+  background-color: #e55342;
+}
+
+.item-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background-color: #f44336; 
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #e53935; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.blog-controls {
+  display: flex;
+}
+
+.blog-controls select {
+  padding: 5px 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.blog-controls button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.blog-controls button:hover {
+  background-color: #0056b3;
+}
+
+
 /* 小さな画面（モバイル）のスタイル */
 @media (max-width: 768px) {
   .blog-container {
