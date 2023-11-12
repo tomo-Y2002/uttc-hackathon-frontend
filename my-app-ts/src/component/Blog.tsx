@@ -1,7 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { ItemData } from '../types';
 import './Blog.css';
+import Modal from 'react-modal';
 
+Modal.setAppElement('#root');
+
+interface StringifyProps {
+  msg: string;
+}
 
 interface BlogProps {
   items: ItemData[];
@@ -15,7 +21,9 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
   const [filterChapterId, setFilterChapterId] = useState<number | "">(0);
   const [sortKey, setSortKey] = useState<'createdAt' | 'updatedAt'>('createdAt');
   const [sortOrder, setSortOrder] = useState<'↑' | '↓'>('↑');
-
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedContent, setSelectedContent] = useState("");
+  const [selectedTitle, setSelectedTitle] = useState("");
 
   const startEdit = (item: ItemData) => {
     setEditMode(true);
@@ -65,6 +73,53 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
   const toggleSortOrder = () => {
     setSortOrder(sortOrder === '↑' ? '↓' : '↑');
   };
+
+  // モーダルを開く関数
+  const openModal = (title: string, content: string) => {
+    setSelectedContent(content);
+    setSelectedTitle(title);
+    setIsOpen(true);
+  };
+
+  // モーダルを閉じる関数
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: '80%', // 幅を80%に設定
+      maxWidth: '1000px', // 最大幅を設定
+      minWidth: '300px', // 最小幅を設定
+      maxHeight: '90vh', // 最大高さを画面の90%に設定
+      overflow: 'auto', // 内容が多い場合はスクロール可能にする
+      border: '1px solid #ccc',
+      borderRadius: '10px',
+      padding: '20px',
+      backgroundColor: '#fff',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    },
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    },
+  };
+
+  const Stringify: React.FC<StringifyProps> = ({ msg }) => {
+    const texts = msg.split(/(\n)/).map((item, index) => (
+      <React.Fragment key={index}>
+        {item.match(/\n/) ? <br /> : item}
+      </React.Fragment>
+    ));
+  
+    return <div>{texts}</div>;
+  };
+  
 
   return (
     <div className="blog-container">
@@ -123,10 +178,10 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
         filteredAndSortedItems.map((item, index) => (
           <div key={index} className="blog-item">
             <div className="blog-item-header">
-              <h3 className="item-title">{item.title}</h3>
+              <h3 className="item-title" onClick={() => openModal(item.title, item.content)}>{item.title}</h3>
               <span className="item-created-at">{new Date(item.createdAt).toLocaleDateString()}</span>
             </div>
-            <p className="item-content">{item.content}</p>
+            <p className="item-description">{item.description}</p>
             <div className="item-actions">
               <button className="edit-button" onClick={() => startEdit(item)}>
                 <i className="fas fa-edit"></i> 編集
@@ -138,6 +193,33 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
           </div>
         ))
       )}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Blog Content"
+      >
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={closeModal}
+            style={{
+              position: 'absolute',
+              top: '0px',
+              right: '20px',
+              background: 'none',
+              border: 'none',
+              fontSize: '1.5rem',
+              cursor: 'pointer',
+            }}
+          >
+            &times;
+          </button>
+          <h2 style={{ marginBottom: '20px' }}>{selectedTitle}</h2>
+          <div style={{ marginBottom: '20px' }}>
+            <Stringify msg={selectedContent}/>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
