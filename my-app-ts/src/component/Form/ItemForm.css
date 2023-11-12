@@ -39,6 +39,7 @@ body {
 
 .input-content {
   height: 20vh;
+  width: 100%;
 }
 
 label {
@@ -72,4 +73,21 @@ input[type="number"] {
 
 #submit-button:hover {
   background-color: #2980b9;
+}
+
+.button-preview {
+  width : 60px;
+}
+
+.button-preview-wrapper {
+  display: flex;
+  justify-content: end;
+}
+
+.inner-input,
+.inner-preview {
+  width: 100%;
+  min-height: 20vh;
+  text-align: start;
+  margin-top: 0;
 }

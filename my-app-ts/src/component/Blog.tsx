@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { ItemData } from '../types';
 import './Blog.css';
 import Modal from 'react-modal';
+import { marked } from "marked";
+import sanitizeHtml from 'sanitize-html';
 
 Modal.setAppElement('#root');
 
@@ -24,6 +26,11 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState("");
   const [selectedTitle, setSelectedTitle] = useState("");
+
+  marked.setOptions({
+    gfm: true,
+    breaks: true,
+  });
 
   const startEdit = (item: ItemData) => {
     setEditMode(true);
@@ -111,6 +118,11 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
   };
 
   const Stringify: React.FC<StringifyProps> = ({ msg }) => {
+    // const sanitizedText = sanitizeHtml(msg, {
+    //   allowedTags: [],
+    //   disallowedTagsMode: 'recursiveEscape',
+    // });
+    // const htmlText = marked.parse(sanitizedText);
     const texts = msg.split(/(\n)/).map((item, index) => (
       <React.Fragment key={index}>
         {item.match(/\n/) ? <br /> : item}
@@ -118,9 +130,10 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
     ));
   
     return <div>{texts}</div>;
+    // return <React.Fragment>{htmlText}</React.Fragment>;
   };
   
-
+  
   return (
     <div className="blog-container">
       <div className="blog-header">
