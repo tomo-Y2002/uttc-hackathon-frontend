@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import "./ItemForm.css";
 import { useAuthContext } from "../../feature/auth/provider/AuthProvider";
+import { marked } from "marked";
+import sanitizeHtml from 'sanitize-html';
 
 type FormProps = {
     onSubmit: (userId: string, categoryId: number, chapterId: number, title: string, description: string, content: string) => void;
@@ -24,6 +27,22 @@ export const ItemForm = (props: FormProps) => {
     criteriaMode: "all",
   });
   const { user } = useAuthContext();
+  const [markdown, setMarkdown] = useState('');
+  const [preview, setPreview] = useState(false);
+
+  const markedText = sanitizeHtml(markdown, {
+    allowedTags: [],
+    disallowedTagsMode: 'recursiveEscape',
+  });
+  marked.setOptions({
+    gfm: true,
+    breaks: true,
+  });
+  const htmlText = marked.parse(markedText);
+
+  const handlePreview = () => {
+    setPreview(!preview);
+  };
 
   const onSubmit = (data: FormInput) => {
     if (errors.categoryId) {
@@ -45,6 +64,7 @@ export const ItemForm = (props: FormProps) => {
       console.error("User is not authenticated");
       return;
     }
+    setMarkdown('')
     console.log(data.categoryId, data.chapterId, data.title, data.description, data.content)
     props.onSubmit(user.uid, data.categoryId, data.chapterId, data.title, data.description, data.content);
     reset();
@@ -141,18 +161,40 @@ export const ItemForm = (props: FormProps) => {
         </div>
         <div className="input-section">
           <label htmlFor="content">内容</label>
-          <textarea
-            id="content"
-            className="input-content"
-            {...register("content", {
-              required: {
-                value: true,
-                message: '入力が必須の項目です。',
-              }
-            })}
-          />
-          {errors.content && <div className="error">{errors.content.message}</div>}
+          <div className="button-preview-wrapper">
+            <button type="button" onClick={handlePreview} className="button-preview">{preview?("Preview"):("Code")}</button>
+          </div>
+          <div className="input-preview">
+            {preview ? (
+              <div className="inner-input">
+                <textarea
+                  id="content"
+                  className="input-content"
+                  {...register("content", {
+                    required: {
+                      value: true,
+                      message: '入力が必須の項目です。',
+                    }
+                  })}
+                  value={markdown}
+                  onChange={(e) => setMarkdown(e.target.value)}
+                />
+                {errors.content && <div className="error">{errors.content.message}</div>}
+              </div>
+            ):(
+              <div className="inner-preview">
+                <div className="bg-gray-200 p-3 text-sm w-full prose prose-sm">
+                  <div
+                    className="markdown-preview"
+                    dangerouslySetInnerHTML={{ __html: htmlText}}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+          
         </div>
+        
         <button id="submit-button" type={"submit"}>Submit</button>
       </div>
     </form>
