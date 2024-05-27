@@ -1,25 +1,14 @@
-import React, { useState, useMemo } from 'react';
-import { ItemData } from '../types';
-import './Video.css';
+import React, { useState , useMemo} from 'react';
+import { ItemData } from '../../types';
+import './Book.css';
 
-interface VideoProps {
+interface BookProps {
   items: ItemData[];
   handleUpdateItem: (itemId: number, userId: string, categoryId: number, chapterId: number, title: string, description: string, content: string) => void;
   handleDeleteItem: (itemId: number) => void;
 }
 
-const extractYouTubeID = (url: string) => {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = url.match(regExp);
-
-  if (match && match[2].length === 11) {
-    return match[2];
-  } else {
-    return null; // In case of an invalid URL format
-  }
-}
-
-export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDeleteItem}) => {
+export const Book: React.FC<BookProps> = ({ items, handleUpdateItem, handleDeleteItem }) => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<ItemData | null>(null);
   const [filterChapterId, setFilterChapterId] = useState<number | "">(0);
@@ -46,7 +35,7 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
         editingItem.chapterId,
         editingItem.title,
         editingItem.description,
-        editingItem.content
+        editingItem.content,
       );
       setEditMode(false);
       setEditingItem(null);
@@ -76,10 +65,10 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
   };
 
   return (
-    <div className="video-container">
-      <div className="video-header">
-        <h2 className="video-title">技術系動画</h2>
-        <div className="video-controls">
+    <div className="book-container">
+      <div className="book-header">
+        <h2 className="book-title">技術書</h2>
+        <div className="book-controls">
           <select onChange={e => setFilterChapterId(Number(e.target.value))} value={filterChapterId}>
             <option value="">- - - </option>
             <option value="1">OSコマンド</option>
@@ -108,7 +97,7 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
         </div>
       </div>
       {editMode && editingItem ? (
-        <div className="video-edit">
+        <div className="book-edit">
           <div className="edit-form">
             <label htmlFor="title">タイトル:</label>
             <input
@@ -118,7 +107,7 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
               value={editingItem.title}
               onChange={handleEditChange}
             />
-            <label htmlFor="content">YouTubeリンク:</label>
+            <label htmlFor="content">リンク:</label>
             <input
               id="content"
               type="text"
@@ -130,29 +119,25 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
           </div>
         </div>
       ) : (
-        <div className="video-item-wrapper">
-          {filteredAndSortedItems.map((item, index) => {
-            const videoId = extractYouTubeID(item.content || "");
-            const videoSrc = videoId ? `https://www.youtube.com/embed/${videoId}` : "";
-            return (
-                <div key={index} className="video-item">
-                  <div className="video-item-header">
-                    <h3 className="item-title">{item.title}</h3>
-                    <span className="item-created-at">{new Date(item.createdAt).toLocaleDateString()}</span>
-                  </div>
-                  {videoSrc && <iframe className="video-iframe" src={videoSrc} frameBorder="0" allowFullScreen></iframe>}
-                  <div className="item-actions">
-                    <button className="edit-button" onClick={() => startEdit(item)}>
-                      <i className="fas fa-edit"></i> 編集
-                    </button>
-                    <button className="delete-button" onClick={() => confirmAndDelete(item.itemId)}>
-                      <i className="fas fa-trash"></i> 削除
-                    </button>
-                  </div>
-                </div>
-            );
-          })}
-        </div>
+        filteredAndSortedItems.map((item, index) => (
+          <div key={index} className="book-item">
+            <div className="book-item-header">
+              <h3 className="item-title">{item.title}</h3>
+              <span className="item-created-at">{new Date(item.createdAt).toLocaleDateString()}</span>
+            </div>
+            <a href={item.content} className="item-link" target="_blank" rel="noopener noreferrer">
+              {item.content}
+            </a>
+            <div className="item-actions">
+              <button className="edit-button" onClick={() => startEdit(item)}>
+                <i className="fas fa-edit"></i> 編集
+              </button>
+              <button className="delete-button" onClick={() => confirmAndDelete(item.itemId)}>
+                <i className="fas fa-trash"></i> 削除
+              </button>
+            </div>
+          </div>
+        ))
       )}
     </div>
   );

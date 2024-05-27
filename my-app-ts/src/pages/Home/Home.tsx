@@ -1,7 +1,7 @@
 import React from 'react';
-import { Blog } from '../../component/Blog'; 
-import { Book } from '../../component/Book'; 
-import { Video } from '../../component/Video';
+import { Blog } from '../../component/Blog/Blog'; 
+import { Book } from '../../component/Book/Book'; 
+import { Video } from '../../component/Video/Video';
 import { ItemData } from '../../types'; 
 
 interface HomeProps {

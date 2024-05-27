@@ -62,4 +62,3 @@ export const Signin = () => {
   );
 };
 
-export default Signin;

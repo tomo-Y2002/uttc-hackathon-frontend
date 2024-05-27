@@ -1,43 +1,24 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { initializeFirebaseApp } from "./firebase";
-import Signup from "./pages/signup";
-import Signin from "./pages/signin";
+import { Signup } from "./pages/signup";
+import { Signin } from "./pages/signin";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
-// import {Header} from "./component/Header";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { ProtectedRoute } from "./component/auth/ProtectedRoute";
+import { ProtectedRoute } from "./feature/auth/provider/ProtectedRoute";
 import { ItemForm } from "./component/Form/ItemForm";
 import { ItemData } from "./types";
 // import { Home } from "./pages/Home/Home";
-import { Blog } from './component/Blog'; 
-import { Book } from './component/Book'; 
-import { Video } from './component/Video';
-import { Navbar } from "./component/Navbar";
+import { Blog } from './component/Blog/Blog'; 
+import { Book } from './component/Book/Book'; 
+import { Video } from './component/Video/Video';
 import { Header } from  "./component/Header/Header"
+import { useFetchItems } from "./hooks/useFetchItems";
 
 initializeFirebaseApp();
 function App() {
-  const [items, setItems] = useState<ItemData[]>([]);
   const endpoint = process.env.REACT_APP_ENDPOINT || "http://localhost:8080";
-
-  const fetchItems = async () => {
-    try {
-      const response = await fetch(
-        endpoint+"/items",
-         {
-           method: "GET" 
-         }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch data: ${response.status}");
-      }
-      const items = await response.json();
-      setItems(items);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { items, fetchItems} = useFetchItems();
 
 
   useEffect(() => {

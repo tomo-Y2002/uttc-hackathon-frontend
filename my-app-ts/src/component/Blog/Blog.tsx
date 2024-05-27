@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ItemData } from '../types';
+import { ItemData } from '../../types';
 import './Blog.css';
 import Modal from 'react-modal';
 import { marked } from "marked";
