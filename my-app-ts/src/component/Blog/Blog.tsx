@@ -19,7 +19,6 @@ interface BlogProps {
   fetchItems: () => void;
 }
 
-// export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDeleteItem}) => {
 export const Blog = (blogProps: BlogProps) => {
   const { items, fetchItems } = blogProps;
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -49,7 +48,7 @@ export const Blog = (blogProps: BlogProps) => {
     }
   };
 
-  const applyEdit = () => {
+  const applyEdit = async() => {
     if (editingItem ) {
       const updateProps: UpdateProps = {
         itemId: editingItem.itemId,
@@ -60,7 +59,7 @@ export const Blog = (blogProps: BlogProps) => {
         description: editingItem.description,
         content: editingItem.content,
       };
-      handleUpdateItem(updateProps);
+      await handleUpdateItem(updateProps);
       fetchItems();
       setEditMode(false);
       setEditingItem(null);

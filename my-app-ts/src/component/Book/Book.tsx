@@ -31,7 +31,7 @@ export const Book = (bookProps: BookProps) => {
     }
   };
 
-  const applyEdit = () => {
+  const applyEdit = async() => {
     if (editingItem) {
       const updateProps: UpdateProps = {
         itemId: editingItem.itemId,
@@ -42,7 +42,7 @@ export const Book = (bookProps: BookProps) => {
         description: editingItem.description,
         content: editingItem.content,
       }
-      handleUpdateItem(updateProps);
+      await handleUpdateItem(updateProps);
       fetchItems();
       setEditMode(false);
       setEditingItem(null);

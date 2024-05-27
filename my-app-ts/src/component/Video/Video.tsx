@@ -42,7 +42,7 @@ export const Video = (videoProps: VideoProps) => {
     }
   };
 
-  const applyEdit = () => {
+  const applyEdit = async() => {
     if (editingItem) {
       const updateProps: UpdateProps = {
         itemId: editingItem.itemId,
@@ -53,7 +53,7 @@ export const Video = (videoProps: VideoProps) => {
         description: editingItem.description,
         content: editingItem.content,
       }
-      handleUpdateItem(updateProps);
+      await handleUpdateItem(updateProps);
       fetchItems();
       setEditMode(false);
       setEditingItem(null);

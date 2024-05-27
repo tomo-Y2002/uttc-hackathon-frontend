@@ -18,6 +18,7 @@ initializeFirebaseApp();
 function App() {
   const endpoint = process.env.REACT_APP_ENDPOINT || "http://localhost:8080";
   const { items, fetchItems} = useFetchItems();
+  console.log("items in App", items.filter(item => item.categoryId === 1));
 
   useEffect(() => {
     fetchItems();
