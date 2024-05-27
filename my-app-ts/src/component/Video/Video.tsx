@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { ItemData } from '../../types';
 import './Video.css';
+import { useUpdateItem } from '../../hooks/useUpdateItem';
+import { useDeleteItem } from '../../hooks/useDeleteItem';
+import { UpdateProps, DeleteProps } from '../../types';
 
 interface VideoProps {
   items: ItemData[];
-  handleUpdateItem: (itemId: number, userId: string, categoryId: number, chapterId: number, title: string, description: string, content: string) => void;
-  handleDeleteItem: (itemId: number) => void;
+  fetchItems: () => void;
 }
 
 const extractYouTubeID = (url: string) => {
@@ -19,12 +21,15 @@ const extractYouTubeID = (url: string) => {
   }
 }
 
-export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDeleteItem}) => {
+export const Video = (videoProps: VideoProps) => {
+  const { items, fetchItems } = videoProps;
   const [editMode, setEditMode] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<ItemData | null>(null);
   const [filterChapterId, setFilterChapterId] = useState<number | "">(0);
   const [sortKey, setSortKey] = useState<'createdAt' | 'updatedAt'>('createdAt');
   const [sortOrder, setSortOrder] = useState<'↑' | '↓'>('↑');
+  const { handleUpdateItem } = useUpdateItem();
+  const { handleDeleteItem } = useDeleteItem();
 
   const startEdit = (item: ItemData) => {
     setEditMode(true);
@@ -39,15 +44,17 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
 
   const applyEdit = () => {
     if (editingItem) {
-      handleUpdateItem(
-        editingItem.itemId,
-        editingItem.userId,
-        editingItem.categoryId,
-        editingItem.chapterId,
-        editingItem.title,
-        editingItem.description,
-        editingItem.content
-      );
+      const updateProps: UpdateProps = {
+        itemId: editingItem.itemId,
+        userId: editingItem.userId,
+        categoryId: editingItem.categoryId,
+        chapterId: editingItem.chapterId,
+        title: editingItem.title,
+        description: editingItem.description,
+        content: editingItem.content,
+      }
+      handleUpdateItem(updateProps);
+      fetchItems();
       setEditMode(false);
       setEditingItem(null);
     }
@@ -55,7 +62,11 @@ export const Video: React.FC<VideoProps> = ({ items, handleUpdateItem, handleDel
 
   const confirmAndDelete = (itemId: number) => {
     if (window.confirm('このアイテムを削除してもよろしいですか？')) {
-      handleDeleteItem(itemId);
+      const deleteProps: DeleteProps = {
+        itemId: itemId,
+      }
+      handleDeleteItem(deleteProps);
+      fetchItems();
     }
   };
 

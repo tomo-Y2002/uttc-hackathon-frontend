@@ -2,12 +2,12 @@ import React from 'react';
 import { Blog } from '../../component/Blog/Blog'; 
 import { Book } from '../../component/Book/Book'; 
 import { Video } from '../../component/Video/Video';
-import { ItemData } from '../../types'; 
+import { ItemData, UpdateProps, DeleteProps } from '../../types'; 
 
 interface HomeProps {
   items: ItemData[];
-  onUpdate: (itemId: number, userId: string, categoryId: number, chapterId: number, title: string,  description: string, content: string,) => void;
-  onDelete: (itemId: number) => void;
+  onUpdate: (props: UpdateProps) => void;
+  onDelete: (props: DeleteProps) => void;
 }
 
 export const Home: React.FC<HomeProps> = ({ items , onUpdate, onDelete}) => {
@@ -17,9 +17,9 @@ export const Home: React.FC<HomeProps> = ({ items , onUpdate, onDelete}) => {
 
   return (
     <div>
-      <Blog items={blogs} handleUpdateItem={onUpdate} handleDeleteItem={onDelete}/>
-      <Book items={books} handleUpdateItem={onUpdate} handleDeleteItem={onDelete}/>
-      <Video items={videos} handleUpdateItem={onUpdate} handleDeleteItem={onDelete}/>
+      {/* <Blog items={blogs} handleUpdateItem={onUpdate} handleDeleteItem={onDelete}/> */}
+      {/* <Book items={books} handleUpdateItem={onUpdate} handleDeleteItem={onDelete}/>
+      <Video items={videos} handleUpdateItem={onUpdate} handleDeleteItem={onDelete}/> */}
     </div>
   );
 };

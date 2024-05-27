@@ -4,6 +4,9 @@ import './Blog.css';
 import Modal from 'react-modal';
 import { marked } from "marked";
 import sanitizeHtml from 'sanitize-html';
+import { UpdateProps, DeleteProps } from '../../types';
+import { useUpdateItem } from '../../hooks/useUpdateItem';
+import { useDeleteItem } from '../../hooks/useDeleteItem';
 
 Modal.setAppElement('#root');
 
@@ -13,11 +16,12 @@ interface StringifyProps {
 
 interface BlogProps {
   items: ItemData[];
-  handleUpdateItem: (itemId: number, userId: string, categoryId: number, chapterId: number, title: string, description: string, content: string) => void;
-  handleDeleteItem: (itemId: number) => void;
+  fetchItems: () => void;
 }
 
-export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDeleteItem}) => {
+// export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDeleteItem}) => {
+export const Blog = (blogProps: BlogProps) => {
+  const { items, fetchItems } = blogProps;
   const [editMode, setEditMode] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<ItemData | null>(null);
   const [filterChapterId, setFilterChapterId] = useState<number | "">(0);
@@ -26,6 +30,8 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState("");
   const [selectedTitle, setSelectedTitle] = useState("");
+  const { handleUpdateItem } = useUpdateItem();
+  const { handleDeleteItem } = useDeleteItem();
 
   marked.setOptions({
     gfm: true,
@@ -45,15 +51,17 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
 
   const applyEdit = () => {
     if (editingItem ) {
-      handleUpdateItem(
-        editingItem.itemId,
-        editingItem.userId,
-        editingItem.categoryId,
-        editingItem.chapterId,
-        editingItem.title,
-        editingItem.description,
-        editingItem.content
-      );
+      const updateProps: UpdateProps = {
+        itemId: editingItem.itemId,
+        userId: editingItem.userId,
+        categoryId: editingItem.categoryId,
+        chapterId: editingItem.chapterId,
+        title: editingItem.title,
+        description: editingItem.description,
+        content: editingItem.content,
+      };
+      handleUpdateItem(updateProps);
+      fetchItems();
       setEditMode(false);
       setEditingItem(null);
     }
@@ -61,7 +69,11 @@ export const Blog: React.FC<BlogProps> = ({ items, handleUpdateItem , handleDele
 
   const confirmAndDelete = (itemId: number) => {
     if (window.confirm('このアイテムを削除してもよろしいですか？')) {
-      handleDeleteItem(itemId);
+      const deleteProps: DeleteProps = {
+        itemId: itemId,
+      }
+      handleDeleteItem(deleteProps);
+      fetchItems();
     }
   };
 
