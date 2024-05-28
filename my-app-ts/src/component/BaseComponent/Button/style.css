@@ -1,0 +1,237 @@
+.button {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 4px;
+  position: relative;
+}
+
+.button .icon-search {
+  height: 24px !important;
+  position: relative !important;
+  width: 24px !important;
+}
+
+.button .label {
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button .text-wrapper {
+  color: #ffffff;
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-style: var(--typography-label-md-font-style);
+  font-weight: var(--typography-label-md-font-weight);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  line-height: var(--typography-label-md-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button .rectangle {
+  border: 1px solid;
+  border-radius: 999px;
+  left: -2px;
+  position: absolute;
+  top: -2px;
+}
+
+.button .search-instance {
+  height: 20px !important;
+  margin-bottom: -2px !important;
+  margin-top: -2px !important;
+  position: relative !important;
+  width: 20px !important;
+}
+
+.button .div {
+  color: #ffffff;
+  font-family: var(--typography-label-sm-font-family);
+  font-size: var(--typography-label-sm-font-size);
+  font-style: var(--typography-label-sm-font-style);
+  font-weight: var(--typography-label-sm-font-weight);
+  letter-spacing: var(--typography-label-sm-letter-spacing);
+  line-height: var(--typography-label-sm-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button .rectangle-2 {
+  border: 1px solid;
+  border-color: #0e63e3;
+  border-radius: 999px;
+  height: 44px;
+  left: -2px;
+  position: absolute;
+  top: -2px;
+  width: 139px;
+}
+
+.button .label-2 {
+  color: #1f1f1f;
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-style: var(--typography-label-md-font-style);
+  font-weight: var(--typography-label-md-font-weight);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  line-height: var(--typography-label-md-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button .rectangle-3 {
+  border: 1px solid;
+  border-color: #474747;
+  border-radius: 999px;
+  height: 52px;
+  left: -2px;
+  position: absolute;
+  top: -2px;
+  width: 155px;
+}
+
+.button .label-3 {
+  color: #1f1f1f;
+  font-family: var(--typography-label-sm-font-family);
+  font-size: var(--typography-label-sm-font-size);
+  font-style: var(--typography-label-sm-font-style);
+  font-weight: var(--typography-label-sm-font-weight);
+  letter-spacing: var(--typography-label-sm-letter-spacing);
+  line-height: var(--typography-label-sm-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button .rectangle-4 {
+  border: 1px solid;
+  border-color: #474747;
+  border-radius: 999px;
+  height: 44px;
+  left: -2px;
+  position: absolute;
+  top: -2px;
+  width: 139px;
+}
+
+.button.md {
+  height: 48px;
+}
+
+.button.has-icon-false {
+  padding: 12px 16px;
+}
+
+.button.sm {
+  height: 40px;
+}
+
+.button.disabled {
+  opacity: 0.3;
+}
+
+.button.secondary {
+  border: 1px solid;
+  border-color: #9e9e9e;
+}
+
+.button.has-icon-true {
+  padding: 12px 16px 12px 12px;
+}
+
+.button.focused.secondary {
+  background-color: #fbfbfb;
+}
+
+.button.focused.primary {
+  background-color: #0e63e3;
+}
+
+.button.hovered.secondary {
+  background-color: #f4f4f4;
+}
+
+.button.hovered.primary {
+  background-color: #0b4fb6;
+}
+
+.button.pressed.primary {
+  background-color: #083b88;
+}
+
+.button.pressed.secondary {
+  background-color: #e0e0e0;
+}
+
+.button.enabled.secondary {
+  background-color: #fbfbfb;
+}
+
+.button.disabled.primary {
+  background-color: #0e63e3;
+}
+
+.button.enabled.primary {
+  background-color: #0e63e3;
+}
+
+.button.disabled.secondary {
+  background-color: #fbfbfb;
+}
+
+.button.md .label {
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-style: var(--typography-label-md-font-style);
+  font-weight: var(--typography-label-md-font-weight);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  line-height: var(--typography-label-md-line-height);
+}
+
+.button.primary .label {
+  color: #ffffff;
+}
+
+.button.sm .label {
+  font-family: var(--typography-label-sm-font-family);
+  font-size: var(--typography-label-sm-font-size);
+  font-style: var(--typography-label-sm-font-style);
+  font-weight: var(--typography-label-sm-font-weight);
+  letter-spacing: var(--typography-label-sm-letter-spacing);
+  line-height: var(--typography-label-sm-line-height);
+}
+
+.button.secondary .label {
+  color: #1f1f1f;
+}
+
+.button.md .rectangle {
+  height: 52px;
+}
+
+.button.sm .rectangle {
+  height: 44px;
+  width: 119px;
+}
+
+.button.secondary .rectangle {
+  border-color: #474747;
+}
+
+.button.primary .rectangle {
+  border-color: #0e63e3;
+}
+
+.button.has-icon-true.md .rectangle {
+  width: 155px;
+}
+
+.button.has-icon-false.md .rectangle {
+  width: 131px;
+}
+

@@ -1,0 +1,26 @@
+.logo-name {
+  align-items: center;
+  display: inline-flex;
+  gap: 32px;
+  padding: 16px;
+  position: relative;
+}
+
+.logo-name .text-wrapper {
+  color: #000000;
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-style: var(--typography-body-lg-font-style);
+  font-weight: var(--typography-body-lg-font-weight);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+  line-height: var(--typography-body-lg-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.logo-name .logo-instance {
+  height: 53.01px !important;
+  position: relative !important;
+  width: 50px !important;
+}
