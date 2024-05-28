@@ -29,6 +29,9 @@ function App() {
       <header >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/solarized-dark.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></link>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap');
+        </style>
       </header>
       <AuthProvider>
         <BrowserRouter>
