@@ -8,6 +8,7 @@ interface Props {
   type: "primary" | "secondary";
   size: "md" | "sm";
   stateProp: "enabled" | "focused" | "pressed" | "hovered" | "disabled";
+  onClick?: () => void;
 }
 
 interface ButtonState {
@@ -16,7 +17,7 @@ interface ButtonState {
   state: string;
 }
 
-export const Button = ({ label = "ボタンラベル", type, size, stateProp }: Props): JSX.Element => {
+export const Button = ({ label = "ボタンラベル", type, size, stateProp, onClick }: Props): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, {
     type: type || "primary",
     size: size || "md",
@@ -30,6 +31,7 @@ export const Button = ({ label = "ボタンラベル", type, size, stateProp }: 
       onMouseLeave={() => dispatch("mouse_leave")}
       onMouseDown={() => dispatch("mouse_down")}
       onMouseUp={() => dispatch("mouse_up")}
+      onClick={onClick}
       type="button"
     >
       <div className={"label"}>

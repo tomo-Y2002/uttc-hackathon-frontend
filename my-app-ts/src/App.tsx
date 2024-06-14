@@ -11,9 +11,8 @@ import { ItemForm } from "./component/Form/ItemForm";
 import { Blog } from './component/Blog/Blog'; 
 import { Book } from './component/Book/Book'; 
 import { Video } from './component/Video/Video';
-import { Header } from  "./component/Header/Header"
 import { useFetchItems } from "./hooks/useFetchItems";
-import { HeaderNew } from "./component/HeaderNew"
+import { Header } from "./component/Header"
 
 initializeFirebaseApp();
 function App() {
@@ -38,7 +37,6 @@ function App() {
         <BrowserRouter>
           <Header />
           {/* 以下でコンポーネントのチェックを行っています。 */}
-          <HeaderNew />
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>

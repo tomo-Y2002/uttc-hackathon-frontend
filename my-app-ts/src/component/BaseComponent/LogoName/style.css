@@ -6,6 +6,10 @@
   position: relative;
 }
 
+.logo-name a {
+  text-decoration: none;
+}
+
 .logo-name .text-wrapper {
   color: var(--color-text-default);
   font-family: var(--typography-body-lg-font-family);
@@ -17,6 +21,10 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
+}
+
+.logo-name .text-wrapper:hover {
+  color: var(--color-text-subtle);
 }
 
 .logo-name .logo-instance {

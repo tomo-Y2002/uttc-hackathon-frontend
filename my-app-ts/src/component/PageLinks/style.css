@@ -10,13 +10,17 @@
   align-items: flex-start;
   display: inline-flex;
   flex: 0 0 auto;
-  gap: 32px;
-  padding: 16px;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-md);
   position: relative;
 }
 
+.container .links a {
+  text-decoration: none;
+}
+
 .container .text-wrapper {
-  color: #000000;
+  color: var(--color-text-default);
   font-family: var(--typography-body-lg-font-family);
   font-size: var(--typography-body-lg-font-size);
   font-style: var(--typography-body-lg-font-style);
@@ -27,4 +31,8 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
+}
+
+.container .text-wrapper:hover {
+  color: var(--color-text-subtle);
 }

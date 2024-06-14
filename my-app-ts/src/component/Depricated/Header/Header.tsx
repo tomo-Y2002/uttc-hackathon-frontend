@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css'; // CSSファイルをインポート
-import { useAuthContext } from '../../feature/auth/provider/AuthProvider';
+import { useAuthContext } from '../../../feature/auth/provider/AuthProvider';
 import { FirebaseError } from '@firebase/util';
 import { getAuth, signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
