@@ -1,13 +1,13 @@
 .logo-name {
   align-items: center;
   display: inline-flex;
-  gap: 32px;
-  padding: 16px;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-md);
   position: relative;
 }
 
 .logo-name .text-wrapper {
-  color: #000000;
+  color: var(--color-text-default);
   font-family: var(--typography-body-lg-font-family);
   font-size: var(--typography-body-lg-font-size);
   font-style: var(--typography-body-lg-font-style);
