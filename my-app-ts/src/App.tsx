@@ -13,6 +13,8 @@ import { Book } from './component/Book/Book';
 import { Video } from './component/Video/Video';
 import { Header } from  "./component/Header/Header"
 import { useFetchItems } from "./hooks/useFetchItems";
+import { PageLinks } from "./component/PageLinks";
+import { SignInInfo } from "./component/SignInInfo"
 
 initializeFirebaseApp();
 function App() {
@@ -36,6 +38,12 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Header />
+          {/* 以下でコンポーネントのチェックを行っています。 */}
+          <PageLinks />
+          <SignInInfo 
+            email="test@test.com"
+            state="signed-out"
+          />
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>

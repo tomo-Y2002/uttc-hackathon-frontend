@@ -10,6 +10,12 @@ interface Props {
   stateProp: "enabled" | "focused" | "pressed" | "hovered" | "disabled";
 }
 
+interface ButtonState {
+  type: string;
+  size: string;
+  state: string;
+}
+
 export const Button = ({ label = "ボタンラベル", type, size, stateProp }: Props): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, {
     type: type || "primary",
@@ -22,20 +28,28 @@ export const Button = ({ label = "ボタンラベル", type, size, stateProp }: 
       className={`button ${state.size} ${state.state} ${state.type}`}
       onMouseEnter={() => dispatch("mouse_enter")}
       onMouseLeave={() => dispatch("mouse_leave")}
+      onMouseDown={() => dispatch("mouse_down")}
+      onMouseUp={() => dispatch("mouse_up")}
       type="button"
     >
-      {label}
+      <div className={"label"}>
+        {label}
+      </div>
     </button>
   );
 };
 
-function reducer(state: any, action: any) {
+function reducer(state: ButtonState, action: string) {
   switch (action) {
     case "mouse_enter":
-      return { ...state, state: "hovered" };
+      return { ...state, state: "hovered" }; // 既存のstateを ...stateで読み込む
     case "mouse_leave":
       return { ...state, state: "enabled" };
-    default:
+    case "mouse_down":
+      return { ...state, state: "pressed"}
+    case "mouse_up":
+      return { ...state, state: "hovered"}
+      default:
       return state;
   }
 }

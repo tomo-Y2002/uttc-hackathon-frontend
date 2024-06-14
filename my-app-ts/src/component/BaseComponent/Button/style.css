@@ -1,15 +1,9 @@
 .button {
   align-items: center;
-  border-radius: 999px;
+  border-radius: var(--border-radius-infinity);
   display: inline-flex;
-  gap: 4px;
+  gap: var(--spacing-xxs);
   position: relative;
-}
-
-.button .icon-search {
-  height: 24px !important;
-  position: relative !important;
-  width: 24px !important;
 }
 
 .button .label {
@@ -19,7 +13,7 @@
 }
 
 .button .text-wrapper {
-  color: #ffffff;
+  color: var(--color-text-primary-action);
   font-family: var(--typography-label-md-font-family);
   font-size: var(--typography-label-md-font-size);
   font-style: var(--typography-label-md-font-style);
@@ -29,102 +23,10 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
-}
-
-.button .rectangle {
-  border: 1px solid;
-  border-radius: 999px;
-  left: -2px;
-  position: absolute;
-  top: -2px;
-}
-
-.button .search-instance {
-  height: 20px !important;
-  margin-bottom: -2px !important;
-  margin-top: -2px !important;
-  position: relative !important;
-  width: 20px !important;
-}
-
-.button .div {
-  color: #ffffff;
-  font-family: var(--typography-label-sm-font-family);
-  font-size: var(--typography-label-sm-font-size);
-  font-style: var(--typography-label-sm-font-style);
-  font-weight: var(--typography-label-sm-font-weight);
-  letter-spacing: var(--typography-label-sm-letter-spacing);
-  line-height: var(--typography-label-sm-line-height);
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.button .rectangle-2 {
-  border: 1px solid;
-  border-color: #0e63e3;
-  border-radius: 999px;
-  height: 44px;
-  left: -2px;
-  position: absolute;
-  top: -2px;
-  width: 139px;
-}
-
-.button .label-2 {
-  color: #1f1f1f;
-  font-family: var(--typography-label-md-font-family);
-  font-size: var(--typography-label-md-font-size);
-  font-style: var(--typography-label-md-font-style);
-  font-weight: var(--typography-label-md-font-weight);
-  letter-spacing: var(--typography-label-md-letter-spacing);
-  line-height: var(--typography-label-md-line-height);
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.button .rectangle-3 {
-  border: 1px solid;
-  border-color: #474747;
-  border-radius: 999px;
-  height: 52px;
-  left: -2px;
-  position: absolute;
-  top: -2px;
-  width: 155px;
-}
-
-.button .label-3 {
-  color: #1f1f1f;
-  font-family: var(--typography-label-sm-font-family);
-  font-size: var(--typography-label-sm-font-size);
-  font-style: var(--typography-label-sm-font-style);
-  font-weight: var(--typography-label-sm-font-weight);
-  letter-spacing: var(--typography-label-sm-letter-spacing);
-  line-height: var(--typography-label-sm-line-height);
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.button .rectangle-4 {
-  border: 1px solid;
-  border-color: #474747;
-  border-radius: 999px;
-  height: 44px;
-  left: -2px;
-  position: absolute;
-  top: -2px;
-  width: 139px;
 }
 
 .button.md {
   height: 48px;
-}
-
-.button.has-icon-false {
-  padding: 12px 16px;
 }
 
 .button.sm {
@@ -136,12 +38,8 @@
 }
 
 .button.secondary {
-  border: 1px solid;
-  border-color: #9e9e9e;
-}
-
-.button.has-icon-true {
-  padding: 12px 16px 12px 12px;
+  border: var(--border-width-md) solid;
+  border-color: var(--color-border-secondary-action-enabled);
 }
 
 .button.focused.secondary {
@@ -153,23 +51,23 @@
 }
 
 .button.hovered.secondary {
-  background-color: #f4f4f4;
+  background-color: var(--color-background-secondary-action-hovered);
 }
 
 .button.hovered.primary {
-  background-color: #0b4fb6;
+  background-color: var(--color-background-primary-action-hovered);
 }
 
 .button.pressed.primary {
-  background-color: #083b88;
+  background-color: var(--color-background-primary-action-pressed);
 }
 
 .button.pressed.secondary {
-  background-color: #e0e0e0;
+  background-color: var(--color-background-secondary-action-pressed);
 }
 
 .button.enabled.secondary {
-  background-color: #fbfbfb;
+  background-color: var(--color-background-secondary-action-enabled);
 }
 
 .button.disabled.primary {
@@ -177,7 +75,7 @@
 }
 
 .button.enabled.primary {
-  background-color: #0e63e3;
+  background-color: var(--color-background-primary-action-enabled);
 }
 
 .button.disabled.secondary {
@@ -194,7 +92,7 @@
 }
 
 .button.primary .label {
-  color: #ffffff;
+  color: var(--color-text-primary-action);
 }
 
 .button.sm .label {
@@ -207,31 +105,5 @@
 }
 
 .button.secondary .label {
-  color: #1f1f1f;
+  color: var(--color-text-secondary-action);
 }
-
-.button.md .rectangle {
-  height: 52px;
-}
-
-.button.sm .rectangle {
-  height: 44px;
-  width: 119px;
-}
-
-.button.secondary .rectangle {
-  border-color: #474747;
-}
-
-.button.primary .rectangle {
-  border-color: #0e63e3;
-}
-
-.button.has-icon-true.md .rectangle {
-  width: 155px;
-}
-
-.button.has-icon-false.md .rectangle {
-  width: 131px;
-}
-
