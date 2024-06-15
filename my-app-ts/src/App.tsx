@@ -1,7 +1,6 @@
 import "./App.css";
 import { useEffect } from "react";
 import { initializeFirebaseApp } from "./firebase";
-import { Signup } from "./pages/signup";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./feature/auth/provider/ProtectedRoute";
@@ -11,8 +10,8 @@ import { Book } from './component/Book/Book';
 import { Video } from './component/Video/Video';
 import { useFetchItems } from "./hooks/useFetchItems";
 import { Header } from "./component/Header";
-import { PageTitle } from "./component/PageTitle";
-import { SignIn } from "./component/SignIn";
+import { SignInPage } from "./pages/SignIn";
+import { SignUpPage } from "./pages/SignUp";
 
 initializeFirebaseApp();
 function App() {
@@ -37,8 +36,6 @@ function App() {
         <BrowserRouter>
           <Header />
           {/* 以下でコンポーネントのチェックを行っています。 */}
-          <PageTitle label="アイテム追加"/>
-          {/* <SignIn /> */}
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>
@@ -64,8 +61,8 @@ function App() {
                 <Video items={items.filter(item => item.categoryId === 3)} fetchItems={fetchItems} />
               </ProtectedRoute>
             } />
-            <Route path="/signup" element={<Signup/>}/>
-            <Route path="/signin" element={<SignIn/>}/>
+            <Route path="/signup" element={<SignUpPage/>}/>
+            <Route path="/signin" element={<SignInPage/>}/>
             <Route path="/*" element={<div>No content</div>}/>
           </Routes>
         </BrowserRouter>
