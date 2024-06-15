@@ -12,6 +12,7 @@ import { useFetchItems } from "./hooks/useFetchItems";
 import { Header } from "./component/Header";
 import { SignInPage } from "./pages/SignIn";
 import { SignUpPage } from "./pages/SignUp";
+import { Category } from "./component/Home/Category"
 
 initializeFirebaseApp();
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <BrowserRouter>
           <Header />
           {/* 以下でコンポーネントのチェックを行っています。 */}
+          <Category/>
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>

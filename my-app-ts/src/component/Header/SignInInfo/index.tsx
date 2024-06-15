@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Button } from "../BaseComponent/Button";
+import { Button } from "../../BaseComponent/Button";
 import { Link } from "react-router-dom"
-import { handleSignOut } from "../../feature/auth/SignOut";
+import { handleSignOut } from "../../../feature/auth/SignOut";
 import "./style.css";
 
 interface Props {

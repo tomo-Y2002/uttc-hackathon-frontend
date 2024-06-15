@@ -1,7 +1,7 @@
 import React from "react";
-import { PageLinks } from "../PageLinks";
+import { PageLinks } from "./PageLinks";
 import { LogoName } from "../BaseComponent/LogoName";
-import { SignInInfo } from "../SignInInfo";
+import { SignInInfo } from "./SignInInfo";
 import { useAuthContext } from '../../feature/auth/provider/AuthProvider';
 import "./style.css";
 
