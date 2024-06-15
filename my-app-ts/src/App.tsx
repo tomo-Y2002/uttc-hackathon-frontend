@@ -2,17 +2,17 @@ import "./App.css";
 import { useEffect } from "react";
 import { initializeFirebaseApp } from "./firebase";
 import { Signup } from "./pages/signup";
-import { Signin } from "./pages/signin";
 import { AuthProvider } from "./feature/auth/provider/AuthProvider";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./feature/auth/provider/ProtectedRoute";
 import { ItemForm } from "./component/Form/ItemForm";
-// import { Home } from "./pages/Home/Home";
 import { Blog } from './component/Blog/Blog'; 
 import { Book } from './component/Book/Book'; 
 import { Video } from './component/Video/Video';
 import { useFetchItems } from "./hooks/useFetchItems";
-import { Header } from "./component/Header"
+import { Header } from "./component/Header";
+import { PageTitle } from "./component/PageTitle";
+import { SignIn } from "./component/SignIn";
 
 initializeFirebaseApp();
 function App() {
@@ -37,6 +37,8 @@ function App() {
         <BrowserRouter>
           <Header />
           {/* 以下でコンポーネントのチェックを行っています。 */}
+          <PageTitle label="アイテム追加"/>
+          {/* <SignIn /> */}
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>
@@ -63,7 +65,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/signup" element={<Signup/>}/>
-            <Route path="/signin" element={<Signin/>}/>
+            <Route path="/signin" element={<SignIn/>}/>
             <Route path="/*" element={<div>No content</div>}/>
           </Routes>
         </BrowserRouter>
