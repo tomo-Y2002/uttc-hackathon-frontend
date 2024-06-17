@@ -1,19 +1,24 @@
 import React, { useState , useMemo} from 'react';
-import { ItemData } from '../types';
+import { ItemData } from '../../types';
 import './Book.css';
+import { useUpdateItem } from '../../hooks/useUpdateItem';
+import { useDeleteItem } from '../../hooks/useDeleteItem';
+import { UpdateProps, DeleteProps } from '../../types';
 
 interface BookProps {
   items: ItemData[];
-  handleUpdateItem: (itemId: number, userId: string, categoryId: number, chapterId: number, title: string, description: string, content: string) => void;
-  handleDeleteItem: (itemId: number) => void;
+  fetchItems: () => void;
 }
 
-export const Book: React.FC<BookProps> = ({ items, handleUpdateItem, handleDeleteItem }) => {
+export const Book = (bookProps: BookProps) => {
+  const { items, fetchItems } = bookProps;
   const [editMode, setEditMode] = useState<boolean>(false);
   const [editingItem, setEditingItem] = useState<ItemData | null>(null);
   const [filterChapterId, setFilterChapterId] = useState<number | "">(0);
   const [sortKey, setSortKey] = useState<'createdAt' | 'updatedAt'>('createdAt');
   const [sortOrder, setSortOrder] = useState<'↑' | '↓'>('↑');
+  const { handleUpdateItem } = useUpdateItem();
+  const { handleDeleteItem } = useDeleteItem();
 
   const startEdit = (item: ItemData) => {
     setEditMode(true);
@@ -26,17 +31,19 @@ export const Book: React.FC<BookProps> = ({ items, handleUpdateItem, handleDelet
     }
   };
 
-  const applyEdit = () => {
+  const applyEdit = async() => {
     if (editingItem) {
-      handleUpdateItem(
-        editingItem.itemId,
-        editingItem.userId,
-        editingItem.categoryId,
-        editingItem.chapterId,
-        editingItem.title,
-        editingItem.description,
-        editingItem.content,
-      );
+      const updateProps: UpdateProps = {
+        itemId: editingItem.itemId,
+        userId: editingItem.userId,
+        categoryId: editingItem.categoryId,
+        chapterId: editingItem.chapterId,
+        title: editingItem.title,
+        description: editingItem.description,
+        content: editingItem.content,
+      }
+      await handleUpdateItem(updateProps);
+      fetchItems();
       setEditMode(false);
       setEditingItem(null);
     }
@@ -44,7 +51,11 @@ export const Book: React.FC<BookProps> = ({ items, handleUpdateItem, handleDelet
 
   const confirmAndDelete = (itemId: number) => {
     if (window.confirm('このアイテムを削除してもよろしいですか？')) {
-      handleDeleteItem(itemId);
+      const deleteProps: DeleteProps = {
+        itemId: itemId,
+      }
+      handleDeleteItem(deleteProps);
+      fetchItems();
     }
   };
 

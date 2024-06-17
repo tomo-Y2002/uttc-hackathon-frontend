@@ -1,5 +1,5 @@
 // src/components/auth/ProtectedRoute.tsx
-import { useAuthContext } from '../../feature/auth/provider/AuthProvider';
+import { useAuthContext } from './AuthProvider';
 import { Navigate } from 'react-router-dom'; 
 
 type Props = { children: JSX.Element }

@@ -4,9 +4,11 @@ import "./ItemForm.css";
 import { useAuthContext } from "../../feature/auth/provider/AuthProvider";
 import { marked } from "marked";
 import sanitizeHtml from 'sanitize-html';
+import { SubmitProps } from "../../types";
+import { useSubmitItem } from "../../hooks/useSubmitItem";
 
 type FormProps = {
-    onSubmit: (userId: string, categoryId: number, chapterId: number, title: string, description: string, content: string) => void;
+    fetchItems: () => void;
 };
 
 type FormInput = {
@@ -17,7 +19,7 @@ type FormInput = {
     content: string;
 }
 
-export const ItemForm = (props: FormProps) => {
+export const ItemForm = (formProps: FormProps) => {
   const {
     register,
     handleSubmit,
@@ -29,6 +31,7 @@ export const ItemForm = (props: FormProps) => {
   const { user } = useAuthContext();
   const [markdown, setMarkdown] = useState('');
   const [preview, setPreview] = useState(false);
+  const { handleSubmitItem } = useSubmitItem();
 
   const markedText = sanitizeHtml(markdown, {
     allowedTags: [],
@@ -66,7 +69,16 @@ export const ItemForm = (props: FormProps) => {
     }
     setMarkdown('')
     console.log(data.categoryId, data.chapterId, data.title, data.description, data.content)
-    props.onSubmit(user.uid, data.categoryId, data.chapterId, data.title, data.description, data.content);
+    const props: SubmitProps = {
+      userId: user.uid,
+      categoryId: data.categoryId,
+      chapterId: data.chapterId,
+      title: data.title,
+      description: data.description,
+      content: data.content,
+    }
+    handleSubmitItem(props);
+    formProps.fetchItems();
     reset();
   };
   

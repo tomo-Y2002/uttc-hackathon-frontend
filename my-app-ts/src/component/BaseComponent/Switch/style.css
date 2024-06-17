@@ -1,0 +1,112 @@
+.button {
+  align-items: center;
+  border-radius: var(--border-radius-infinity);
+  display: inline-flex;
+  gap: var(--spacing-xxs);
+  position: relative;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  border: none;
+}
+
+.button .label {
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button .text-wrapper {
+  color: var(--color-text-primary-action);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-style: var(--typography-label-md-font-style);
+  font-weight: var(--typography-label-md-font-weight);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  line-height: var(--typography-label-md-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.button.md {
+  height: 48px;
+}
+
+.button.sm {
+  height: 40px;
+}
+
+.button.disabled {
+  opacity: 0.3;
+}
+
+.button.secondary {
+  border: var(--border-width-md) solid;
+  border-color: var(--color-border-secondary-action-enabled);
+}
+
+.button.focused.secondary {
+  background-color: #fbfbfb;
+}
+
+.button.focused.primary {
+  background-color: #0e63e3;
+}
+
+.button.hovered.secondary {
+  background-color: var(--color-background-secondary-action-hovered);
+}
+
+.button.hovered.primary {
+  background-color: var(--color-background-primary-action-hovered);
+}
+
+.button.pressed.primary {
+  background-color: var(--color-background-primary-action-pressed);
+}
+
+.button.pressed.secondary {
+  background-color: var(--color-background-secondary-action-pressed);
+}
+
+.button.enabled.secondary {
+  background-color: var(--color-background-secondary-action-enabled);
+}
+
+.button.disabled.primary {
+  background-color: #0e63e3;
+}
+
+.button.enabled.primary {
+  background-color: var(--color-background-primary-action-enabled);
+}
+
+.button.disabled.secondary {
+  background-color: #fbfbfb;
+}
+
+.button.md .label {
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-style: var(--typography-label-md-font-style);
+  font-weight: var(--typography-label-md-font-weight);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  line-height: var(--typography-label-md-line-height);
+}
+
+.button.primary .label {
+  color: var(--color-text-primary-action);
+}
+
+.button.sm .label {
+  font-family: var(--typography-label-sm-font-family);
+  font-size: var(--typography-label-sm-font-size);
+  font-style: var(--typography-label-sm-font-style);
+  font-weight: var(--typography-label-sm-font-weight);
+  letter-spacing: var(--typography-label-sm-letter-spacing);
+  line-height: var(--typography-label-sm-line-height);
+}
+
+.button.secondary .label {
+  color: var(--color-text-secondary-action);
+}

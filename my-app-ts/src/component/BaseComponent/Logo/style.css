@@ -1,0 +1,13 @@
+.logo {
+  height: 53px;
+  position: relative;
+  width: 50px;
+}
+
+.logo .vector {
+  height: 36px;
+  left: 2px;
+  position: absolute;
+  top: 9px;
+  width: 47px;
+}

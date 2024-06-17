@@ -1,0 +1,20 @@
+.sign-in-information {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  position: relative;
+}
+
+.sign-in-information .email {
+  color: var(--color-text-default);
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-style: var(--typography-body-lg-font-style);
+  font-weight: var(--typography-body-lg-font-weight);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+  line-height: var(--typography-body-lg-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}

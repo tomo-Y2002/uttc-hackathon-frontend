@@ -1,0 +1,32 @@
+.kb-body-signin {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  position: relative;
+  width: 1728px;
+}
+
+.kb-body-signin .container {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: var(--spacing-none);;
+  padding: var(--spacing-none);
+  position: relative;
+}
+
+.kb-body-signin .email-password-instance {
+  flex: 0 0 auto !important;
+}
+
+.kb-body-signin .sign-in {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: var(--spacing-none);
+  padding: var(--spacing-md);
+  position: relative;
+}

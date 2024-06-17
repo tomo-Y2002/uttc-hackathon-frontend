@@ -1,0 +1,37 @@
+.kb {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 1728px;
+}
+
+.kb .container-middle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 1320px;
+}
+
+.kb .container-height {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: var(--spacing-xxl) var(--spacing-md);
+  position: relative;
+}
+
+.kb .text-wrapper {
+  color: var(--color-text-default);
+  font-family: var(--typography-heading-lg-font-family);
+  font-size: var(--typography-heading-lg-font-size);
+  font-style: var(--typography-heading-lg-font-style);
+  font-weight: var(--typography-heading-lg-font-weight);
+  letter-spacing: var(--typography-heading-lg-letter-spacing);
+  line-height: var(--typography-heading-lg-line-height);
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}

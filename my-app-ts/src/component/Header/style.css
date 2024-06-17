@@ -1,16 +1,32 @@
-/* style.css */
-.header {
-  padding: 16px 0;
-  background-color: #3182ce; 
+.kb-header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 1728px;
 }
 
-.container {
-  max-width: 960px; 
-  margin: 0 auto;
-  padding: 0 16px;
+.kb-header .container-middle {
+  height: 85.01px;
+  position: relative;
+  width: 1320px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.heading {
-  color: white;
-  text-align: center;
+.kb-header .container-middle .container-logoname {
+  position: absolute;
+  left: 0%;
+}
+
+.kb-header .container-middle .container-pagelinks {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.kb-header .container-middle .container-signininfo {
+  position: absolute;
+  right: 0%;
 }

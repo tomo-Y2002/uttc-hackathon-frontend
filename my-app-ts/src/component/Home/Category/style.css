@@ -1,0 +1,35 @@
+.div-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--spacing-xxxs);
+  padding: var(--spacing-md);
+  position: relative;
+}
+
+.div-wrapper .text-wrapper {
+  color: var(--color-text-secondary-action);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-style: var(--typography-label-md-font-style);
+  font-weight: var(--typography-label-md-font-weight);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  line-height: 100%;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.div-wrapper .frame {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-none);
+  position: relative;
+}
+
+.div-wrapper .button-instance {
+  flex: 0 0 auto !important;
+}
