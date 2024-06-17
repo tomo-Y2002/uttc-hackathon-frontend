@@ -37,7 +37,7 @@ function App() {
         <BrowserRouter>
           <Header />
           {/* 以下でコンポーネントのチェックを行っています。 */}
-          <Category/>
+          {/* <Category/> */}
           <Routes>
             <Route path="/" element={
               <ProtectedRoute>
